@@ -1,0 +1,25 @@
+{
+  "name": "pendeltag-webpack",
+  "version": "0.1.0",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rhersen/pendeltag-webpack.git"
+  },
+  "keywords": [
+    "webpack"
+  ],
+  "author": "Rudolf Hersén",
+  "bugs": {
+    "url": "https://github.com/rhersen/pendeltag-webpack/issues"
+  },
+  "homepage": "https://github.com/rhersen/pendeltag-webpack#readme",
+  "devDependencies": {
+    "css-loader": "^0.23.1",
+    "handlebars": "^4.0.5",
+    "handlebars-loader": "^1.1.4",
+    "style-loader": "^0.13.0"
+  }
+}
