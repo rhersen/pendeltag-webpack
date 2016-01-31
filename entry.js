@@ -10,7 +10,7 @@ window.getDepartures = function (locationSignature) {
 
     request.onload = function () {
         if (this.status >= 200 && this.status < 400) {
-            console.log('Success!');
+            console.log('Success!!');
             var data = JSON.parse(this.response);
             console.log(data);
             var htmlString = trains(data.RESPONSE.RESULT[0]);
