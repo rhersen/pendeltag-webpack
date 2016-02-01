@@ -1,5 +1,8 @@
-<ul id="trains">
-    {{#each TrainAnnouncement}}
-        <li>{{this.AdvertisedTimeAtLocation}}</li>
+<table id="trains">
+    {{#each this}}
+        <tr>
+            <td>{{this.advertised}}</td>
+            <td>{{this.location}}</td>
+        </tr>
     {{/each}}
-</ul>
+</table>
