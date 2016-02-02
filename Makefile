@@ -1,9 +1,9 @@
-install:	pull test /opt/nginx-1.2.8/webpack/bundle.js
+install:	pull mocha /opt/nginx-1.2.8/webpack/bundle.js
 
 pull:
 	git pull
 
-test:
+mocha:
 	node_modules/.bin/mocha
 
 bundle.js:	entry.js
