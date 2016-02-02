@@ -8,7 +8,7 @@ describe('format', function () {
             ToLocation: [{LocationName: "Söc", Priority: 1, Order: 0}]
         })
 
-        result.advertised.should.equal('22.38')
+        result.advertised.should.equal('22:38')
         result.location.should.equal('Söc')
     })
 })
