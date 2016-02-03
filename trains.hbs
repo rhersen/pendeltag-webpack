@@ -1,8 +1,10 @@
 <table id="trains">
     {{#each this}}
         <tr>
-            <td>{{this.advertised}}</td>
             <td>{{this.location}}</td>
+            <td>{{this.advertised}}</td>
+            <td><em>{{this.estimated}}</em></td>
+            <td><b>{{this.actual}}</b></td>
         </tr>
     {{/each}}
 </table>
