@@ -11,33 +11,42 @@ var names = {}
 
 document.querySelector('body').insertAdjacentHTML('beforeend', require("./template.hbs")())
 
-var as = document.querySelectorAll('#navs nav div')
-for (var i = 0; i < as.length; i++) {
-    as[i].addEventListener('click', handleClick)
-}
+document.getElementById('index').addEventListener('click', handleIndex)
+
+var $divs = document.querySelectorAll('#navs nav div')
+for (var i = 0; i < $divs.length; i++)
+    $divs[i].addEventListener('click', handleClickStation)
 
 ajax('api/stations', function (data) {
     var stations = _.first(data.RESPONSE.RESULT).TrainStation
-    names = _.zipObject(_.map(stations, 'LocationSignature'), _.map(stations, 'AdvertisedShortLocationName'));
+    names = _.zipObject(_.map(stations, 'LocationSignature'), _.map(stations, 'AdvertisedShortLocationName'))
+
+    for (var i = 0; i < $divs.length; i++) {
+        var $div = $divs[i]
+        var key = $div.dataset.location
+        $div.textContent = names[key] || key
+    }
 })
 
-function handleClick() {
-    var selected = document.querySelector('.selected')
-    if (selected)
-        selected.classList.remove('selected')
+function handleIndex() {
+    for (var i = 0; i < $divs.length; i++) {
+        var $div = $divs[i]
+        $div.style.display = ''
+    }
 
-    document.getElementById('navs').classList.add('inactive')
-    this.classList.add('selected')
+    document.getElementById('trains').innerHTML = ''
+}
+
+function handleClickStation() {
+    for (var i = 0; i < $divs.length; i++) {
+        var $div = $divs[i]
+        $div.style.display = $div.dataset.location === this.dataset.location ? '' : 'none'
+    }
 
     return ajax('api/departures/' + this.dataset.location, handleJsonResponse)
 
     function handleJsonResponse(data) {
-        var htmlString = trains(data.RESPONSE.RESULT[0].TrainAnnouncement.map(_.partial(format, names)))
-        var $trains = document.getElementById('trains')
-
-        if ($trains)
-            $trains.outerHTML = htmlString
-        else
-            document.getElementById('navs').insertAdjacentHTML('afterend', htmlString)
+        var trainAnnouncements = data.RESPONSE.RESULT[0].TrainAnnouncement;
+        document.getElementById('trains').innerHTML = trains(trainAnnouncements.map(_.partial(format, names)))
     }
 }

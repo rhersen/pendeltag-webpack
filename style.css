@@ -1,6 +1,10 @@
 body {
     font-family: sans-serif;
-    font-size: 24px
+    font-size: 20px
+}
+
+#trains table {
+    font-size: 20px
 }
 
 #navs {
