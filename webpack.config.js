@@ -12,7 +12,7 @@ module.exports = {
     },
     devServer: {
         proxy: {
-            '/departures/*': {
+            '/api/*': {
                 target: 'http://localhost:8081',
                 secure: false
             }

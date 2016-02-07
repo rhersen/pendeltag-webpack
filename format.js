@@ -1,5 +1,5 @@
 function time(train, field) {
-    var s = train[field + 'TimeAtLocation'];
+    var s = train[field + 'TimeAtLocation']
 
     if (!s)
         return ''
@@ -10,20 +10,24 @@ function time(train, field) {
     return s
 }
 
-function location(train) {
-    var a = train.ToLocation;
-    if (a && a.length)
-        return a[0].LocationName;
-    else
-        return '?'
+function location(names, train) {
+    var locations = train.ToLocation
 
+    if (locations && locations.length)
+        return getName(locations[0].LocationName, names)
+
+    return '?'
 }
 
-module.exports = function (train) {
+function getName(key, names) {
+    return names[key] || key
+}
+
+module.exports = function (names, train) {
     return {
         advertised: time(train, 'Advertised'),
         estimated: time(train, 'Estimated'),
         actual: time(train, ''),
-        location: location(train)
+        location: location(names, train)
     }
 }
