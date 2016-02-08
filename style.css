@@ -1,10 +1,10 @@
 body {
     font-family: sans-serif;
-    font-size: 22px
+    font-size: 24px
 }
 
 #trains table {
-    font-size: 22px
+    font-size: 24px
 }
 
 #navs {
@@ -51,12 +51,12 @@ div.selected {
 }
 
 .narrow {
-    width: 35%;
+    width: 40%;
 }
 
 .center {
     float: left;
-    width: 30%;
+    width: 20%;
 }
 
 .center > div {
