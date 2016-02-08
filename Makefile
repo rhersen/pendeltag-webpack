@@ -6,7 +6,7 @@ pull:
 mocha:
 	node_modules/.bin/mocha
 
-bundle.js:	entry.js format.js
+bundle.js:	entry.js format.js style.css
 	node_modules/.bin/webpack
 
 /opt/nginx-1.2.8/webpack/bundle.js:	bundle.js
