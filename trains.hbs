@@ -3,8 +3,12 @@
         <tr>
             <td>{{this.location}}</td>
             <td>{{this.advertised}}</td>
-            <td><em>{{this.estimated}}</em></td>
-            <td><b>{{this.actual}}</b></td>
+            <td>
+                {{#unless this.actual}}
+                    <em>{{this.estimated}}</em>
+                {{/unless}}
+                <b>{{this.actual}}</b>
+            </td>
         </tr>
     {{/each}}
 </table>
