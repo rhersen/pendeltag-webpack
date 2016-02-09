@@ -1,14 +1,10 @@
 <table>
     {{#each this}}
         <tr>
+            <td>{{this.ident}}</td>
             <td>{{this.location}}</td>
             <td>{{this.advertised}}</td>
-            <td>
-                {{#unless this.actual}}
-                    <em>{{this.estimated}}</em>
-                {{/unless}}
-                <b>{{this.actual}}</b>
-            </td>
+            <td class="{{this.realtime}}">{{this.time}}</td>
         </tr>
     {{/each}}
 </table>

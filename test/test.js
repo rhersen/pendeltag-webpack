@@ -4,14 +4,34 @@ var format = require('../format')
 describe('format', function () {
     var names = {"Söc": "Södertälje C"};
 
-    it('parses AdvertisedTimeAtLocation', function () {
+    describe('normal data', function () {
         var result = format(names, {
+            AdvertisedTrainIdent: "2753",
             AdvertisedTimeAtLocation: "2016-02-02T22:38:00",
+            EstimatedTimeAtLocation: "2016-02-02T22:39:00",
+            TimeAtLocation: "2016-02-02T22:40:00",
             ToLocation: [{LocationName: "Söc", Priority: 1, Order: 0}]
         })
 
-        result.advertised.should.equal('22:38')
-        result.location.should.equal('Södertälje C')
+        it('return train identifier', function () {
+            result.ident.should.equal('2753')
+        })
+
+        it('parses AdvertisedTimeAtLocation', function () {
+            result.advertised.should.equal('22:38')
+        })
+
+        it('looks up station name', function () {
+            result.location.should.equal('Södertälje C')
+        })
+
+        it('time shows actual if set', function () {
+            result.time.should.equal('22:40')
+        })
+
+        it('shows what kind of time is reported in "time" property', function () {
+            result.realtime.should.equal('actual')
+        })
     })
 
     it('handles wrong time format', function () {
@@ -40,13 +60,12 @@ describe('format', function () {
         result.location.should.equal('Tul')
     })
 
-    it('estimated and actual', function () {
+    it('estimated but no actual', function () {
         var result = format(names, {
-            TimeAtLocation: "2016-02-02T22:40:00",
             EstimatedTimeAtLocation: "2016-02-02T22:39:00"
         })
 
-        result.actual.should.equal('22:40')
-        result.estimated.should.equal('22:39')
+        result.time.should.equal('22:39')
+        result.realtime.should.equal('estimated')
     })
 })

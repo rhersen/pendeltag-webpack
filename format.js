@@ -24,10 +24,14 @@ function getName(key, names) {
 }
 
 module.exports = function (names, train) {
+    var estimated = time(train, 'Estimated');
+    var actual = time(train, '');
+
     return {
+        ident: train.AdvertisedTrainIdent,
         advertised: time(train, 'Advertised'),
-        estimated: time(train, 'Estimated'),
-        actual: time(train, ''),
+        time: actual || estimated,
+        realtime: actual ? 'actual' : 'estimated',
         location: location(names, train)
     }
 }

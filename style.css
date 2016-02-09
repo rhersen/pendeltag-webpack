@@ -32,6 +32,14 @@ td {
     border: 1px solid #999;
 }
 
+td.actual {
+    font-weight: bold;
+}
+
+td.estimated {
+    font-style: italic;
+}
+
 div.selected {
     color: blue;
 }
