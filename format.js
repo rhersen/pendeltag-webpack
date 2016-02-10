@@ -1,6 +1,4 @@
-function time(train, field) {
-    var s = train[field + 'TimeAtLocation']
-
+function removeDate(s) {
     if (!s)
         return ''
 
@@ -24,14 +22,19 @@ function getName(key, names) {
 }
 
 module.exports = function (names, train) {
-    var actual = time(train, '');
-    var estimated = time(train, 'Estimated');
-    var advertised = time(train, 'Advertised');
+    var actual = train.TimeAtLocation
+    var estimated = train.EstimatedTimeAtLocation
+    var advertised = train.AdvertisedTimeAtLocation
+
+    var s = actual || estimated || advertised;
+    var now = new Date()
+    var minutes = now.getTimezoneOffset() + (Date.parse(s) - now) / 60000;
 
     return {
         ident: train.AdvertisedTrainIdent,
         direction: /[02468]$/.test(train.AdvertisedTrainIdent) ? 'northbound' : 'southbound',
-        time: actual || estimated || advertised,
+        time: removeDate(s),
+        minutes: minutes.toFixed(1),
         realtime: actual ? 'actual' : estimated ? 'estimated' : 'advertised',
         location: location(names, train)
     }

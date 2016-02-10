@@ -48,6 +48,10 @@ td.estimated {
     font-style: italic;
 }
 
+td.countdown {
+    text-align: right;
+}
+
 div.selected {
     color: blue;
 }
