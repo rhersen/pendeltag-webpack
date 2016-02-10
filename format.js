@@ -29,6 +29,7 @@ module.exports = function (names, train) {
 
     return {
         ident: train.AdvertisedTrainIdent,
+        direction: /[02468]$/.test(train.AdvertisedTrainIdent) ? 'northbound' : 'southbound',
         advertised: time(train, 'Advertised'),
         time: actual || estimated,
         realtime: actual ? 'actual' : 'estimated',

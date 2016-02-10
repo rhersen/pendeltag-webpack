@@ -17,6 +17,10 @@ describe('format', function () {
             result.ident.should.equal('2753')
         })
 
+        it('odd train identifier for southbound train', function () {
+            result.direction.should.equal('southbound')
+        })
+
         it('parses AdvertisedTimeAtLocation', function () {
             result.advertised.should.equal('22:38')
         })
@@ -67,5 +71,13 @@ describe('format', function () {
 
         result.time.should.equal('22:39')
         result.realtime.should.equal('estimated')
+    })
+
+    it('even train identifier for northbound train', function () {
+        var result = format(names, {
+            AdvertisedTrainIdent: "2754"
+        })
+
+        result.direction.should.equal('northbound')
     })
 })
