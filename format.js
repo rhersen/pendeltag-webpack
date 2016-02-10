@@ -24,15 +24,15 @@ function getName(key, names) {
 }
 
 module.exports = function (names, train) {
-    var estimated = time(train, 'Estimated');
     var actual = time(train, '');
+    var estimated = time(train, 'Estimated');
+    var advertised = time(train, 'Advertised');
 
     return {
         ident: train.AdvertisedTrainIdent,
         direction: /[02468]$/.test(train.AdvertisedTrainIdent) ? 'northbound' : 'southbound',
-        advertised: time(train, 'Advertised'),
-        time: actual || estimated,
-        realtime: actual ? 'actual' : 'estimated',
+        time: actual || estimated || advertised,
+        realtime: actual ? 'actual' : estimated ? 'estimated' : 'advertised',
         location: location(names, train)
     }
 }

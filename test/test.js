@@ -21,10 +21,6 @@ describe('format', function () {
             result.direction.should.equal('southbound')
         })
 
-        it('parses AdvertisedTimeAtLocation', function () {
-            result.advertised.should.equal('22:38')
-        })
-
         it('looks up station name', function () {
             result.location.should.equal('Södertälje C')
         })
@@ -43,7 +39,7 @@ describe('format', function () {
             AdvertisedTimeAtLocation: "22:38:00"
         })
 
-        result.advertised.should.equal('22:38:00')
+        result.time.should.equal('22:38:00')
         result.location.should.equal('?')
     })
 
@@ -71,6 +67,15 @@ describe('format', function () {
 
         result.time.should.equal('22:39')
         result.realtime.should.equal('estimated')
+    })
+
+    it('no estimated nor actual', function () {
+        var result = format(names, {
+            AdvertisedTimeAtLocation: "2016-02-02T22:38:00"
+        })
+
+        result.time.should.equal('22:38')
+        result.realtime.should.equal('advertised')
     })
 
     it('even train identifier for northbound train', function () {
