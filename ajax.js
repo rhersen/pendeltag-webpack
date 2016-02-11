@@ -20,4 +20,4 @@ module.exports = function (url, callback) {
     request.send()
 
     return false
-};
+}

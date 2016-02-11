@@ -26,9 +26,9 @@ module.exports = function (names, train) {
     var estimated = train.EstimatedTimeAtLocation
     var advertised = train.AdvertisedTimeAtLocation
 
-    var s = actual || estimated || advertised;
+    var s = actual || estimated || advertised
     var now = new Date()
-    var minutes = now.getTimezoneOffset() + (Date.parse(s) - now) / 60000;
+    var minutes = now.getTimezoneOffset() + (Date.parse(s) - now) / 60000
 
     return {
         ident: train.AdvertisedTrainIdent,

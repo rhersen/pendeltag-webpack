@@ -46,7 +46,7 @@ function handleClickStation() {
     return ajax('api/departures/' + this.dataset.location, handleJsonResponse)
 
     function handleJsonResponse(data) {
-        var trainAnnouncements = data.RESPONSE.RESULT[0].TrainAnnouncement;
+        var trainAnnouncements = data.RESPONSE.RESULT[0].TrainAnnouncement
         document.getElementById('trains').innerHTML = trains(trainAnnouncements.map(_.partial(format, names)))
     }
 }
