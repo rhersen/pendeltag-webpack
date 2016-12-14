@@ -43,10 +43,14 @@ function handleClickStation() {
         $div.style.display = $div.dataset.location === this.dataset.location ? '' : 'none'
     }
 
-    return ajax('api/departures/' + this.dataset.location, handleJsonResponse)
+    return ajax('api/trains?since=0:15&until=0:59&locations=' + this.dataset.location, handleJsonResponse)
 
     function handleJsonResponse(data) {
         var trainAnnouncements = data.RESPONSE.RESULT[0].TrainAnnouncement
-        document.getElementById('trains').innerHTML = trains(trainAnnouncements.map(_.partial(format, names)))
+        document.getElementById('trains').innerHTML =
+            trains(
+                trainAnnouncements
+                    .filter(a => a.ActivityType === 'Avgang')
+                    .map(_.partial(format, names)))
     }
 }
