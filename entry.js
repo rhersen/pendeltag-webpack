@@ -17,7 +17,7 @@ const $divs = document.querySelectorAll('#navs nav div')
 for (let i = 0; i < $divs.length; i++)
     $divs[i].addEventListener('click', handleClickStation)
 
-ajax('api/stations', function (data) {
+ajax('/json/stations', function (data) {
     const stations = _.first(data.RESPONSE.RESULT).TrainStation
     names = _.zipObject(_.map(stations, 'LocationSignature'), _.map(stations, 'AdvertisedShortLocationName'))
 
@@ -42,7 +42,7 @@ function handleClickStation() {
         $div.style.display = $div.dataset.location === this.dataset.location ? '' : 'none'
     }
 
-    return ajax('api/departures?since=0:15&until=0:59&locations=' + this.dataset.location, handleJsonResponse)
+    return ajax('/json/departures?since=0:15&until=0:59&locations=' + this.dataset.location, handleJsonResponse)
 
     function handleJsonResponse(data) {
         const trainAnnouncements = data.RESPONSE.RESULT[0].TrainAnnouncement
