@@ -6,7 +6,7 @@ pull:
 mocha:
 	node_modules/.bin/mocha
 
-bundle.js:	entry.js format.js style.css trains.hbs
+bundle.js:	entry.js format.js style.css template.hbs trains.hbs
 	node_modules/.bin/webpack
 
 /opt/nginx/secure/webpack/bundle.js:	bundle.js
